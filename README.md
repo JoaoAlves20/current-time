@@ -1,2 +1,3 @@
-# current-time
-Tela mostrando o horário atual em React
+# Current Time - Project
+
+Projeto desenvolvido para mostrar a hora em tempo real
