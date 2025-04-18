@@ -1,10 +1,13 @@
-import { Container } from "./style";
-
 import { useState, useEffect } from "react";
+
+import { Container } from "./style";
+import colors from "@/styles/colors";
 
 export default function Layout() {
     const [hours, setHours] = useState("");
     const [greeting, setGreeting] = useState("");
+    const [from, setFrom] = useState("");
+    const [to, setTo] = useState("");
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -12,11 +15,17 @@ export default function Layout() {
             const minute = new Date().getMinutes();
 
             if (hour >= 1 && hour < 12) {
-                setGreeting("Good morning!");
+                setGreeting("Good morning 😁");
+                setFrom(colors.morning.from);
+                setTo(colors.morning.to);
             } else if (hour >= 12 && hour < 18) {
-                setGreeting("Good afternoon!");
+                setGreeting("Good afternoon 😎");
+                setFrom(colors.afternoon.from);
+                setTo(colors.afternoon.to);
             } else if (hour >= 18 && hour < 24 || hour === 0) {
-                setGreeting("Good night!");
+                setGreeting("Good night 😴");
+                setFrom(colors.night.from);
+                setTo(colors.night.to);
             }
 
             const hourNow = hour < 10 ? `0${hour}` : hour;
@@ -29,12 +38,12 @@ export default function Layout() {
     }, []);
     
     return (
-        <Container>
-            <p>{greeting}</p>
-            
+        <Container colors={{ from, to }}>
             <div>
                 <h1>{hours}</h1>
             </div>
+            
+            <p>{greeting}</p>
         </Container>
     )
 }

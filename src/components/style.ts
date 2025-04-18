@@ -1,6 +1,11 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+interface Colors {
+    from?: string,
+    to?: string
+}
+
+export const Container = styled.div<{ colors: Colors }>`
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -8,7 +13,7 @@ export const Container = styled.div`
     justify-content: center;
     align-items: center;
     color: white;
-    background: linear-gradient(to right, #0ea5e9, #6366f1);
+    background: linear-gradient(to right, ${props => props.colors.from}, ${props => props.colors.to});
 
     div {
         background: rgba(0, 0, 0, 0.5);
@@ -26,7 +31,6 @@ export const Container = styled.div`
     }
 
     p {
-        padding-bottom: 100px;
         font-size: 50px;
     }
 `;
